@@ -21,17 +21,20 @@ def speech_recognition(audio_path):
     f = open(audio_path, 'rb')
     audio_data = f.read()
     data = base64.b64encode(audio_data)  # 得到 byte 编码的数据
-
     params = {'app_id': api_auth.app_id,
               'speech': data,
-              'format': 2,
-              'rate': 16000,
+              'format': '2',
+              'rate': '16000',
               'time_stamp': time_stamp,
-              'nonce_str': nonce_str,
-              'session_id': '10000'
+              'nonce_str': nonce_str
               }
     params['sign'] = api_auth.get_req_sign(params)
-    return requests.post(url, data=params)
+    r = requests.post(url,data=params)
+    txt = r.json()['data']['text']
+    if not txt:
+        return '哦吼～出了点小问题，请“呼叫本人”'
+    else:
+        return txt
 
 
 def speech_synthesis(txt):
@@ -48,7 +51,7 @@ def speech_synthesis(txt):
               'model_type': 2,
               'speed': 0,
               'time_stamp': time_stamp,
-              'nonce_str': nonce_str,
+              'nonce_str': nonce_str
               }
     params['sign'] = api_auth.get_req_sign(params)
     return requests.get(url, data=params)
@@ -71,4 +74,5 @@ def get_reply(audio_path):
         # print(r_synthesis.json())
         return '哦吼～出了点小问题，请“呼叫本人”'
     else:
-        return audio_util.base642mp3(answer)
+        # return audio_util.base642mp3(answer)
+        return answer
