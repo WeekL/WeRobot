@@ -1,7 +1,7 @@
 import itchat
 from tencent import auto_text, auto_pic, auto_audio
-import util.file_utils as fu
-import util.audio_utils as au
+import utils.file_util as fu
+import utils.audio_util as au
 
 
 @itchat.msg_register('Text')
@@ -29,7 +29,7 @@ def attach_reply(msg):
     elif msg['Type'] == 'Recording':
         audio_path = fu.get_root_path() + 'data\\audio\\'  # 语音保存路径
         msg['Text'](fu.comfirm_dir(audio_path) + msg['FileName'])
-        return auto_audio.get_content(au.mp32wav(audio_path, msg['FileName']))
+        return auto_audio.get_reply(au.mp32wav(audio_path, msg['FileName']))
     elif msg['Type'] == 'Video':
         reply = '啥？视频？'
     elif msg['Type'] == 'Attachment':
@@ -54,8 +54,8 @@ def mm_reply(msg):
 
 
 if __name__ == '__main__':
-    itchat.auto_login(hotReload=True, statusStorageDir='newInstance.pkl')
-    # itchat.auto_login(hotReload=True)
+    # itchat.auto_login(hotReload=True, statusStorageDir='newInstance.pkl')
+    itchat.auto_login(hotReload=True)
 
     # 获取自己的UserName
     myUserName = itchat.get_friends(update=True)[0]["UserName"]
