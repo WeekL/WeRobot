@@ -1,8 +1,7 @@
 import itchat
-
-import tencent.auto_pic
-import tencent.auto_text
-from util.file_utils import get_root_path, get_file_size
+from tencent import auto_text, auto_pic, auto_audio
+import util.file_utils as fu
+import util.audio_utils as au
 
 
 @itchat.msg_register('Text')
@@ -14,24 +13,23 @@ def text_reply(msg):
     if u'呼叫本人' in receive:
         return u"正在招魂～请稍等..."
     else:
-        return u"{}".format(tencent.auto_text.get_content(receive))
+        return u"{}".format(auto_text.get_content(receive))
 
 
 @itchat.msg_register(['Picture', 'Recording', 'Attachment', 'Video'])
 def attach_reply(msg):
     reply = '处理中，请稍后。。。'
     if msg['Type'] == 'Picture':
-        pic_path = get_root_path() + 'data\\image\\'  # 图片保存路径
-        msg['Text'](pic_path + msg['FileName'])
-        if not get_file_size(pic_path + msg['FileName']) > 1024 * 1024:  # 只识别1Mb以下的图片
-            return tencent.auto_pic.get_content(pic_path + msg['FileName'])
+        pic_path = fu.get_root_path() + 'data\\image\\'  # 图片保存路径
+        msg['Text'](fu.comfirm_dir(pic_path) + msg['FileName'])
+        if not fu.get_file_size(pic_path + msg['FileName']) > 1024 * 1024:  # 只识别1Mb以下的图片
+            return auto_pic.get_content(pic_path + msg['FileName'])
         else:
             print('{}大于1Mb，不处理'.format(msg['FileName']))
     elif msg['Type'] == 'Recording':
-        audio_path = get_root_path() + 'data\\audio\\'  # 语音保存路径
-        msg['Text'](audio_path + msg['FileName'])
-        print(msg)
-        pass
+        audio_path = fu.get_root_path() + 'data\\audio\\'  # 语音保存路径
+        msg['Text'](fu.comfirm_dir(audio_path) + msg['FileName'])
+        return auto_audio.get_content(au.mp32wav(audio_path, msg['FileName']))
     elif msg['Type'] == 'Video':
         reply = '啥？视频？'
     elif msg['Type'] == 'Attachment':
@@ -56,8 +54,8 @@ def mm_reply(msg):
 
 
 if __name__ == '__main__':
-    # itchat.auto_login(hotReload=True, statusStorageDir='newInstance.pkl')
-    itchat.auto_login(hotReload=True)
+    itchat.auto_login(hotReload=True, statusStorageDir='newInstance.pkl')
+    # itchat.auto_login(hotReload=True)
 
     # 获取自己的UserName
     myUserName = itchat.get_friends(update=True)[0]["UserName"]
