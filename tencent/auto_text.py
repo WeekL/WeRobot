@@ -3,6 +3,7 @@ import random
 import string
 import requests
 
+from data import api
 from tencent import api_auth
 
 
@@ -12,7 +13,7 @@ def get_params(receive_text):
     time_stamp = str(int(t))
     # 请求随机字符串，用于保证签名不可预测  
     nonce_str = ''.join(random.sample(string.ascii_letters + string.digits, 10))
-    params = {'app_id': api_auth.app_id,
+    params = {'app_id': api.app_id,
               'question': receive_text,
               'time_stamp': time_stamp,
               'nonce_str': nonce_str,

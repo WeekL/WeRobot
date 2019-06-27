@@ -22,10 +22,12 @@ def attach_reply(msg):
     if msg['Type'] == 'Picture':
         pic_path = fu.get_root_path() + 'data\\image\\'  # 图片保存路径
         msg['Text'](fu.comfirm_dir(pic_path) + msg['FileName'])
-        if not fu.get_file_size(pic_path + msg['FileName']) > 1024 * 1024:  # 只识别1Mb以下的图片
-            return auto_pic.get_content(pic_path + msg['FileName'])
-        else:
+        if fu.get_file_size(pic_path + msg['FileName']) > 1024 * 1024:  # 只识别1Mb以下的图片
             print('{}大于1Mb，不处理'.format(msg['FileName']))
+        elif str.split(msg['FileName'], '.')[1] == 'gif':
+            print('{}是动态图片，不处理'.format(msg['FileName']))
+        else:
+            return auto_pic.get_content(pic_path + msg['FileName'])
     elif msg['Type'] == 'Recording':
         audio_path = fu.get_root_path() + 'data\\audio\\'  # 语音保存路径
         msg['Text'](fu.comfirm_dir(audio_path) + msg['FileName'])

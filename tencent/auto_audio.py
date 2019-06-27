@@ -5,8 +5,8 @@ import time
 
 import requests
 
+from data import api
 from tencent import api_auth, auto_text
-from utils import audio_util
 
 
 def speech_recognition(audio_path):
@@ -21,7 +21,7 @@ def speech_recognition(audio_path):
     f = open(audio_path, 'rb')
     audio_data = f.read()
     data = base64.b64encode(audio_data)  # 得到 byte 编码的数据
-    params = {'app_id': api_auth.app_id,
+    params = {'app_id': api.app_id,
               'speech': data,
               'format': '2',
               'rate': '16000',
@@ -29,7 +29,7 @@ def speech_recognition(audio_path):
               'nonce_str': nonce_str
               }
     params['sign'] = api_auth.get_req_sign(params)
-    r = requests.post(url,data=params)
+    r = requests.post(url, data=params)
     txt = r.json()['data']['text']
     if not txt:
         return '哦吼～出了点小问题，请“呼叫本人”'

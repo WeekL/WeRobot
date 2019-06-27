@@ -14,8 +14,7 @@
 from urllib import parse
 import hashlib
 
-app_id = '2117663946'
-app_key = '2uKUfGdykJFjeUui'
+from data.api import app_key
 
 
 def curlmd5(src):
