@@ -3,49 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0ffe6fe6-0669-4e59-a23b-4997a5864e86" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/itChatTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/itChatTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190625-230614.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-101816.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-105841.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-105931.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-105953.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-110036.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-111455.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-111723.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-111730.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-113228.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-113643.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-120048.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-120233.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-120347.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-120444.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-221706.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-221832.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-222141.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-222620.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-222918.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-222959.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-234657.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-234657.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-235039.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/audio/190626-235039.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190625-224221.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190625-224252.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190625-224354.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190625-224501.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190625-225239.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190626-100659.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190626-100727.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190626-100735.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/image/190626-141217.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/itchat.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/itchat.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tencent/api_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/tencent/api_auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tencent/auto_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/tencent/auto_audio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tencent/auto_pic.py" beforeDir="false" afterPath="$PROJECT_DIR$/tencent/auto_pic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tencent/auto_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/tencent/auto_text.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +58,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="409">
-              <caret line="105" column="5" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
+              <caret line="105" column="5" lean-forward="true" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -177,12 +134,12 @@
         <option value="$PROJECT_DIR$/util/audio_utils.py" />
         <option value="$PROJECT_DIR$/utils/audio_util.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/data/api.py" />
         <option value="$PROJECT_DIR$/tencent/api_auth.py" />
         <option value="$PROJECT_DIR$/tencent/auto_text.py" />
         <option value="$PROJECT_DIR$/tencent/auto_audio.py" />
         <option value="$PROJECT_DIR$/tencent/auto_pic.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -207,6 +164,18 @@
               <item name="WeRobot" type="b2602c69:ProjectViewProjectNode" />
               <item name="WeRobot" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="audio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="image" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WeRobot" type="b2602c69:ProjectViewProjectNode" />
@@ -453,7 +422,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="409">
-          <caret line="105" column="5" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
+          <caret line="105" column="5" lean-forward="true" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
         </state>
       </provider>
     </entry>
