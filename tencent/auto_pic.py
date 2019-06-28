@@ -7,6 +7,7 @@ import requests
 
 from data import api
 from tencent import api_auth, auto_text
+from utils import file_util
 
 
 def image_recognition(image_path):
@@ -42,5 +43,7 @@ def get_content(image_path):
     # 获取请求参数  
     image_path = image_path.encode('utf-8')
     r_img = image_recognition(image_path)
+    print(r_img)
     answer = auto_text.get_content(r_img)
+    file_util.delete_file(image_path)
     return answer

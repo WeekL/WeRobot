@@ -20,6 +20,7 @@ def mp32wav(path, file_name, frame_rate=16000):
     mono = mp3_version.set_frame_rate(frame_rate).set_channels(1)  # 设置声道和采样率
     result = path + name + '.wav'
     mono.export(result, format='wav', codec='pcm_s16le')  # codec此参数本意是设定16bits pcm编码器, 但发现此参数可以省略
+    file_util.delete_file(mp3_file)
     return result
 
 

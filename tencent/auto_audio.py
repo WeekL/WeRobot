@@ -7,6 +7,7 @@ import requests
 
 from data import api
 from tencent import api_auth, auto_text
+from utils import file_util
 
 
 def speech_recognition(audio_path):
@@ -70,6 +71,7 @@ def get_reply(audio_path):
     # r_synthesis = speech_synthesis(r_txt)
     # answer = r_synthesis.json()["data"]["voice"]
     answer = r_txt
+    file_util.delete_file(audio_path)
     if not answer:
         # print(r_synthesis.json())
         return '哦吼～出了点小问题，请“呼叫本人”'
