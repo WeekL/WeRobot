@@ -1,4 +1,5 @@
 # 我的忽略
+.idea
 /data
 *.pkl
 
