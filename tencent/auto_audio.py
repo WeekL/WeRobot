@@ -5,6 +5,7 @@ import time
 
 import requests
 
+from baidu.bd_audio import get_result
 from data import api
 from tencent import api_auth, auto_text
 from utils import file_util
@@ -47,7 +48,7 @@ def speech_synthesis(txt):
     # 请求随机字符串，用于保证签名不可预测  
     nonce_str = ''.join(random.sample(string.ascii_letters + string.digits, 10))
 
-    params = {'app_id': api_auth.app_id,
+    params = {'app_id': api.app_id,
               'text': txt,
               'model_type': 2,
               'speed': 0,
@@ -59,17 +60,20 @@ def speech_synthesis(txt):
 
 
 def get_reply(audio_path):
-    # 获取请求参数  
-    audio_path = audio_path.encode('utf-8')
+    # audio_path = audio_path.encode('utf-8')
     # 获取语音识别结果
-    r_recognition = speech_recognition(audio_path)
+    r_recognition = speech_recognition(audio_path)  # 腾讯语音识别
+    # r_recognition = get_result(audio_path) # 百度语音识别
     print(r_recognition)
+
     # 获取回复文字
     r_txt = auto_text.get_content(r_recognition)
     # print(r_txt)
+
     # 获取语音合成结果
     # r_synthesis = speech_synthesis(r_txt)
     # answer = r_synthesis.json()["data"]["voice"]
+
     answer = r_txt
     file_util.delete_file(audio_path)
     if not answer:

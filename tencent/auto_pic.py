@@ -45,5 +45,4 @@ def get_content(image_path):
     r_img = image_recognition(image_path)
     print(r_img)
     answer = auto_text.get_content(r_img)
-    file_util.delete_file(image_path)
     return answer

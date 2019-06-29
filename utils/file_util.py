@@ -7,6 +7,11 @@ def get_root_path():
     return rootPath
 
 
+def get_file_content(path):
+    with open(path, 'rb') as fp:
+        return fp.read()
+
+
 def get_file_size(path):
     return os.path.getsize(path)
 
