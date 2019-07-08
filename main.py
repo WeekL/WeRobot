@@ -12,6 +12,12 @@ import utils.audio_util as au
 msg_information = {}
 face_bug = None  # 针对表情包的内容
 
+def need_reply(remark_name):
+    if u'#1' in remark_name:
+        return True
+    else:
+        return False
+
 
 @itchat.msg_register([TEXT, PICTURE, FRIENDS, CARD, MAP, SHARING, RECORDING, ATTACHMENT, VIDEO])
 def text_reply(msg):
@@ -22,41 +28,48 @@ def text_reply(msg):
     msg_id = msg['MsgId']  # 每条信息的id
     msg_content = None  # 储存信息的内容
     msg_share_url = None  # 储存分享的链接，比如分享的文章和音乐
+    
+    tag = need_reply(msg['Text']['RemarkName'])
 
     msg_type = msg['Type']
     reply = None
     if msg_type == 'Text':
         msg_content = msg['Text']
         receive = str.replace(msg['Text'], "\\", "/")
-        if u'呼叫本人' == receive.strip():
-            reply = u"正在招魂～请稍等..."
-        else:
-            reply = u"{}".format(auto_text.get_content(receive))
+        if tag:
+            if u'呼叫本人' == receive.strip():
+                reply = u"正在招魂～请稍等..."
+            else:
+                reply = u"{}".format(auto_text.get_content(receive))
     elif msg_type == 'Picture':
         pic_path = fu.get_root_path() + 'data\\image\\'  # 图片保存路径
         msg['Text'](fu.comfirm_dir(pic_path) + msg['FileName'])
         msg_content = pic_path + msg['FileName']
-        if fu.get_file_size(pic_path + msg['FileName']) > 1024 * 1024:  # 只识别1Mb以下的图片
-            print('{}大于1Mb，不处理'.format(msg['FileName']))
-        elif str.split(msg['FileName'], '.')[1] == 'gif':  # 只识别静态图片
-            print('{}是动态图片，不处理'.format(msg['FileName']))
-        else:
-            reply = auto_pic.get_content(pic_path + msg['FileName'])
+        if tag:
+            if fu.get_file_size(pic_path + msg['FileName']) > 1024 * 1024:  # 只识别1Mb以下的图片
+                print('{}大于1Mb，不处理'.format(msg['FileName']))
+            elif str.split(msg['FileName'], '.')[1] == 'gif':  # 只识别静态图片
+                print('{}是动态图片，不处理'.format(msg['FileName']))
+            else:
+                reply = auto_pic.get_content(pic_path + msg['FileName'])
     elif msg_type == 'Recording':
         audio_path = fu.get_root_path() + 'data\\audio\\'  # 语音保存路径
         msg['Text'](fu.comfirm_dir(audio_path) + msg['FileName'])
         msg_content = audio_path + msg['FileName']
-        reply = auto_audio.get_reply(au.mp32wav(audio_path, msg['FileName']))
+        if tag:
+            reply = auto_audio.get_reply(au.mp32wav(audio_path, msg['FileName']))
     elif msg_type == 'Video':
         video_path = fu.get_root_path() + 'data\\video\\'
         msg['Text'](fu.comfirm_dir(video_path) + msg['FileName'])
         msg_content = video_path + msg['FileName']
-        reply = '啥？视频？'
+        if tag:
+            reply = '啥？视频？'
     elif msg_type == 'Attachment':
         attach_path = fu.get_root_path() + 'data\\attach\\'
         msg['Text'](fu.comfirm_dir(attach_path) + msg['FileName'])
         msg_content = attach_path + msg['FileName']
-        reply = '让我看看是啥...我擦，8个G的葫芦娃'
+        if tag:
+            reply = '让我看看是啥...我擦，8个G的葫芦娃'
     elif msg_type == "Map":
         x, y, location = re.search(
             "<location x=\"(.*?)\" y=\"(.*?)\".*label=\"(.*?)\".*", msg['OriContent']).group(1, 2, 3)
@@ -70,11 +83,13 @@ def text_reply(msg):
             msg_content += '，性别为男'
         else:
             msg_content += '，性别为女'
-        reply = u'收到好友名片：{}，性别{}'.format(msg['Text']['NickName'], msg['Text']['Sex'])
+        if tag:
+            reply = u'收到好友名片：{}，性别{}'.format(msg['Text']['NickName'], msg['Text']['Sex'])
     elif msg_type == 'Sharing':
         msg_content = msg['Text']
         msg_share_url = msg['Url']  # 记录分享的url
-        reply = u'收到分享' + msg['Text']
+        if tag:
+            reply = u'收到分享' + msg['Text']
 
     # 将信息存储在字典中，每一个msg_id对应一条信息
     msg_information.update(
@@ -86,8 +101,8 @@ def text_reply(msg):
             }
         }
     )
-
-    return reply
+    if tag:
+        return reply
 
 
 # 防撤回
@@ -134,4 +149,4 @@ if __name__ == '__main__':
 
     # 获取自己的UserName
     myUserName = itchat.get_friends(update=True)[0]["UserName"]
-    itchat.run(debug=True)
+    itchat.run(debug=False)
