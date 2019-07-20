@@ -12,6 +12,7 @@ import utils.audio_util as au
 msg_information = {}
 face_bug = None  # 针对表情包的内容
 
+
 def need_reply(remark_name):
     if u'#1' in remark_name:
         return True
@@ -28,8 +29,8 @@ def text_reply(msg):
     msg_id = msg['MsgId']  # 每条信息的id
     msg_content = None  # 储存信息的内容
     msg_share_url = None  # 储存分享的链接，比如分享的文章和音乐
-    
-    tag = need_reply(msg['Text']['RemarkName'])
+
+    tag = need_reply(itchat.search_friends(userName=msg['FromUserName'])['RemarkName'])
 
     msg_type = msg['Type']
     reply = None
@@ -145,8 +146,8 @@ def anti_withdrawal(msg):
 
 if __name__ == '__main__':
     # itchat.auto_login(hotReload=True, statusStorageDir='newInstance.pkl')
-    itchat.auto_login(enableCmdQR=True)
+    itchat.auto_login(hotReload=False, enableCmdQR=2)
 
     # 获取自己的UserName
     myUserName = itchat.get_friends(update=True)[0]["UserName"]
-    itchat.run(debug=False)
+    itchat.run(debug=True)
