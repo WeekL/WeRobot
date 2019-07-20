@@ -24,13 +24,13 @@ def need_reply(remark_name):
 def text_reply(msg):
     global face_bug
     msg_time_rec = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())  # 接受消息的时间
-    msg_from = itchat.search_friends(userName=msg['FromUserName'])['NickName']  # 在好友列表中查询发送信息的好友昵称
+    msg_from = itchat.search_friends(userName=msg['FromUserName'])['RemarkName']  # 在好友列表中查询发送信息的好友昵称
     msg_time = msg['CreateTime']  # 信息发送的时间
     msg_id = msg['MsgId']  # 每条信息的id
     msg_content = None  # 储存信息的内容
     msg_share_url = None  # 储存分享的链接，比如分享的文章和音乐
 
-    tag = need_reply(itchat.search_friends(userName=msg['FromUserName'])['RemarkName'])
+    tag = need_reply(msg_from)
 
     msg_type = msg['Type']
     reply = None
@@ -85,7 +85,7 @@ def text_reply(msg):
         else:
             msg_content += '，性别为女'
         if tag:
-            reply = u'收到好友名片：{}，性别{}'.format(msg['Text']['NickName'], msg['Text']['Sex'])
+            reply = u'收到好友名片：{}'.format(msg_content)
     elif msg_type == 'Sharing':
         msg_content = msg['Text']
         msg_share_url = msg['Url']  # 记录分享的url
@@ -102,7 +102,7 @@ def text_reply(msg):
             }
         }
     )
-    if tag:
+    if tag and reply is not None:
         return reply
 
 
@@ -147,6 +147,7 @@ def anti_withdrawal(msg):
 if __name__ == '__main__':
     # itchat.auto_login(hotReload=True, statusStorageDir='newInstance.pkl')
     itchat.auto_login(hotReload=False, enableCmdQR=2)
+    # itchat.auto_login(hotReload=True)
 
     # 获取自己的UserName
     myUserName = itchat.get_friends(update=True)[0]["UserName"]

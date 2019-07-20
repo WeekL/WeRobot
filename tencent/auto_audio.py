@@ -5,7 +5,7 @@ import time
 
 import requests
 
-from baidu.bd_audio import get_result
+#from baidu.bd_audio import get_result
 from data import api
 from tencent import api_auth, auto_text
 from utils import file_util

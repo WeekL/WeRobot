@@ -28,14 +28,16 @@ def get_content(plus_item):
     # 聊天的API地址 
     url = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat"
     # 获取请求参数  
-    plus_item = plus_item.encode('utf-8')
+    # plus_item = plus_item.encode('utf-8')
+    print(plus_item)
     payload = get_params(plus_item)
     # r = requests.get(url,params=payload)  
     r = requests.post(url, data=payload)
     answer = r.json()["data"]["answer"]
     if not answer:
         print(r.json())
-        return '哦吼～出了点小问题，请“呼叫本人”'
+        # return '哦吼～出了点小问题，请“呼叫本人”'
+        return None
     else:
         return answer
 
