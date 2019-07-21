@@ -43,7 +43,7 @@ def text_reply(msg):
             else:
                 reply = u"{}".format(auto_text.get_content(receive))
     elif msg_type == 'Picture':
-        pic_path = fu.get_root_path() + 'data\\image\\'  # 图片保存路径
+        pic_path = fu.get_root_path() + "data%simage%s" % fu.get_path_separator() # 图片保存路径
         msg['Text'](fu.comfirm_dir(pic_path) + msg['FileName'])
         msg_content = pic_path + msg['FileName']
         if tag:
@@ -54,19 +54,19 @@ def text_reply(msg):
             else:
                 reply = auto_pic.get_content(pic_path + msg['FileName'])
     elif msg_type == 'Recording':
-        audio_path = fu.get_root_path() + 'data\\audio\\'  # 语音保存路径
+        audio_path = fu.get_root_path() + "data%saudio%s" % fu.get_path_separator()  # 语音保存路径
         msg['Text'](fu.comfirm_dir(audio_path) + msg['FileName'])
         msg_content = audio_path + msg['FileName']
         if tag:
             reply = auto_audio.get_reply(au.mp32wav(audio_path, msg['FileName']))
     elif msg_type == 'Video':
-        video_path = fu.get_root_path() + 'data\\video\\'
+        video_path = fu.get_root_path() + "data%svideo%s" % fu.get_path_separator()
         msg['Text'](fu.comfirm_dir(video_path) + msg['FileName'])
         msg_content = video_path + msg['FileName']
         if tag:
             reply = '啥？视频？'
     elif msg_type == 'Attachment':
-        attach_path = fu.get_root_path() + 'data\\attach\\'
+        attach_path = fu.get_root_path() + "data%sattch%s" % fu.get_path_separator()
         msg['Text'](fu.comfirm_dir(attach_path) + msg['FileName'])
         msg_content = attach_path + msg['FileName']
         if tag:
@@ -146,9 +146,11 @@ def anti_withdrawal(msg):
 
 if __name__ == '__main__':
     # itchat.auto_login(hotReload=True, statusStorageDir='newInstance.pkl')
-    itchat.auto_login(hotReload=False, enableCmdQR=2)
-    # itchat.auto_login(hotReload=True)
+    if fu.is_linux():
+        itchat.auto_login(hotReload=True, enableCmdQR=2)
+    else:
+        itchat.auto_login(hotReload=True)
 
     # 获取自己的UserName
     myUserName = itchat.get_friends(update=True)[0]["UserName"]
-    itchat.run(debug=True)
+    itchat.run(debug=False)
